@@ -7,6 +7,11 @@ import androidx.room.Query
 
 @Dao
 interface TripDao {
+    @Query("SELECT * FROM Trip")
+    fun observeAll(): kotlinx.coroutines.flow.Flow<List<Trip>>
+
+    @androidx.room.Update
+    fun updateOne(trip: Trip)
     @Query("SELECT * FROM trip")
     fun getAll(): List<Trip>
 

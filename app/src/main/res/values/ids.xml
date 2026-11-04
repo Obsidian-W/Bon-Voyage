@@ -1,0 +1,12 @@
+<resources>
+    <item type="id" name="field_year" />
+    <item type="id" name="field_name" /><item type="id" name="field_countries" />
+    <item type="id" name="field_start" /><item type="id" name="field_end" />
+    <item type="id" name="field_zone" /><item type="id" name="field_notes" />
+    <item type="id" name="field_title" /><item type="id" name="field_date" />
+    <item type="id" name="field_hotel" /><item type="id" name="field_booking" />
+    <item type="id" name="field_location" /><item type="id" name="field_destination" />
+    <item type="id" name="field_departure" /><item type="id" name="field_arrival" />
+    <item type="id" name="field_departureZone" /><item type="id" name="field_arrivalZone" />
+    <item type="id" name="field_sleeps" />
+<item type="id" name="field_country" /><item type="id" name="field_destinationCountry" /></resources>

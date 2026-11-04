@@ -1,148 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_columnWeight="0.5"
->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:cardBackgroundColor="@color/white_low_opacity"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="16dp"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="@dimen/cardview_default_radius">
+<?xml version="1.0" ?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:paddingStart="@dimen/space_8" android:paddingEnd="@dimen/space_8">
+    <com.google.android.material.card.MaterialCardView android:id="@+id/dayCard" android:layout_width="match_parent" android:layout_height="match_parent" app:cardBackgroundColor="@color/planner_surface" app:cardCornerRadius="@dimen/card_corner" app:cardElevation="@dimen/card_elevation">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+            <LinearLayout android:id="@+id/dayHeader" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:id="@+id/dayNumber" style="@style/PlannerCaption" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/space_8" android:gravity="center"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+                    <TextView android:id="@+id/cardFlag" style="@style/PlannerText" android:layout_width="@dimen/touch_target" android:layout_height="@dimen/touch_target" android:gravity="center" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackgroundBorderless" />
+                    <EditText android:id="@+id/dayTitle" style="@style/PlannerText" android:layout_width="0dp" android:layout_height="wrap_content" android:minHeight="@dimen/touch_target" android:layout_weight="1" android:padding="@dimen/space_8" android:textStyle="bold" android:background="@android:color/transparent" android:inputType="textCapSentences" android:hint="@string/day_name" android:importantForAutofill="no"/>
+                    <ImageButton android:id="@+id/delete_day" style="@style/PlannerIcon" android:layout_width="@dimen/touch_target" android:layout_height="@dimen/touch_target" android:layout_marginStart="@dimen/space_8" android:layout_marginEnd="@dimen/space_4" android:background="?attr/selectableItemBackground" android:src="@drawable/ic_delete" android:contentDescription="@string/button_for_removing_day"/>
+                </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/backgroundImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitStart"
-            android:alpha="1"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/dayNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text=""
-                android:alpha="1"
-                android:textSize="24sp"
-                android:shadowColor="@color/black"
-                android:shadowDx="1"
-                android:shadowDy="2"
-                android:shadowRadius="4"
-                android:textColor="@color/white"
-                android:layout_marginTop="8dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:visibility="gone"
-                android:id="@+id/plusButtonContainer"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_day_of_trip"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="0dp"
-                    android:textSize="@dimen/size_large">
-                </TextView>
-
-                <ImageView
-                    android:id="@+id/plusDay"
-                    android:layout_margin="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/ic_add"
-                    android:layout_gravity="center"
-                    android:alpha="1"
-                    android:background="@color/teal_200"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:focusable="true"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_transportation"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/size_large">
-                </TextView>
-
-                <ImageView
-                    android:id="@+id/plusTrip"
-                    android:layout_margin="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/ic_add"
-                    android:layout_gravity="center"
-                    android:alpha="1"
-                    android:background="@color/purple_200"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:focusable="true"
-                    />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="visible"
-                android:id="@+id/contentContainer">
-
-                <EditText
-                    android:id="@+id/dayDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:hint="@string/add_day_description"
-                    android:inputType="textMultiLine"
-                    android:gravity="top"
-                    android:singleLine="false"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/size_normal"
-                    />
-
-                <Button
-                    android:id="@+id/hotelLoc"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="@string/hotel_loc"
-                    android:alpha="1"
-                    android:textSize="@dimen/size_small"
-                    />
-            </LinearLayout>
-
+            <include layout="@layout/view_add_card"/>
+            <ScrollView android:id="@+id/cardScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+                <LinearLayout android:id="@+id/contentContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16"/>
+            </ScrollView>
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/delete_day"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="0dp"
-            android:alpha="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_remove"
-            android:contentDescription="@string/button_for_removing_day"/>
-
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

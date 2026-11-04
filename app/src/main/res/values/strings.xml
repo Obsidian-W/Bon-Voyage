@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name" translatable="false">Bon voyage</string>
-    <string name="current">Current</string>
-    <string name="previous">Previous</string>
+    <string name="app_name" translatable="false">BonVoyage</string>
+    <string name="app_display_name" translatable="false">Bon Voyage</string>
+    <string name="current">Trips</string>
+    <string name="previous">Past trips</string>
     <string name="addTrip">Add a trip</string>
     <string name="iceland">Iceland</string>
-    <string name="validateAdd">Validate</string>
-    <string name="addTitle">Add your trip here</string>
+    <string name="validateAdd">Save</string>
+    <string name="addTitle">New trip</string>
     <string name="background_image">BackgroundImage</string>
     <string name="end_of_the_trip">End of the trip</string>
     <string name="beginning_of_the_trip">Beginning of the trip</string>
@@ -17,7 +18,7 @@
     <string name="trip_to">Trip to: %s</string>
     <string name="trip_start">Start: %s</string>
     <string name="trip_end">End: %s</string>
-    <string name="day_number">Day %d: (%s)</string>
+    <string name="day_number">Day %1$d: (%2$s)</string>
     <string name="day_number_short">Day %d:</string>
     <string name="day_travel">Transport</string>
     <string name="add_day_of_trip">Add a day</string>

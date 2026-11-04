@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/space_16" android:orientation="vertical">
+    <com.google.android.material.button.MaterialButton android:id="@+id/mapAction" style="@style/PlannerTextButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/map_action" app:icon="@drawable/ic_map" />
+    <com.google.android.material.button.MaterialButton android:id="@+id/bookingAction" style="@style/PlannerTextButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_8" android:text="@string/booking_action" app:icon="@drawable/ic_link" />
+</LinearLayout>

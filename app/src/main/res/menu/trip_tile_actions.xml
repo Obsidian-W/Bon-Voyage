@@ -1,0 +1,4 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/editTileAction" android:title="@string/edit_trip" />
+    <item android:id="@+id/deleteTileAction" android:title="@string/delete_action" />
+</menu>

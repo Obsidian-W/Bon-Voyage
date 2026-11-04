@@ -1,7 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="size_small">18sp</dimen>
-    <dimen name="size_normal">20sp</dimen>
+    <dimen name="space_4">4dp</dimen>
+    <dimen name="section_stroke">1dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="space_32">32dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+    <dimen name="field_height">56dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="tile_min_width">160dp</dimen>
+    <dimen name="tile_height">208dp</dimen>
+    <dimen name="preview_height">160dp</dimen>
+    <dimen name="picker_height">320dp</dimen>
+    <dimen name="card_corner">16dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="size_caption">14sp</dimen>
+    <dimen name="size_small">16sp</dimen>
+    <dimen name="size_normal">18sp</dimen>
     <dimen name="size_large">24sp</dimen>
     <dimen name="size_very_large">28sp</dimen>
+    <dimen name="detail_sidebar_width">208dp</dimen>
+    <dimen name="text_shadow_radius">4dp</dimen>
+    <dimen name="text_shadow_offset">1dp</dimen>
+    <dimen name="tile_title_height">32dp</dimen>
+    <dimen name="tile_date_height">24dp</dimen>
+    <dimen name="tile_text_min">8sp</dimen>
+    <dimen name="tile_text_step">1sp</dimen>
+    <item type="integer" name="tile_max_flags">5</item>
+    <item type="integer" name="trip_tab_fade_ms">140</item>
+    <dimen name="about_hero_height">192dp</dimen>
+    <dimen name="about_icon_size">64dp</dimen>
+    <item type="integer" name="trip_controls_threshold">3</item>
 </resources>

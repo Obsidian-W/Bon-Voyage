@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.BonVoyage" parent="Base.Theme.BonVoyage">
+        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
+    </style>
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <color name="planner_surface">#FFFFFF</color>
+    <color name="planner_text">#231C29</color>
+    <color name="planner_hint">#62596B</color>
+    <color name="planner_day">#E3F5F0</color>
+    <color name="planner_transport">#EEE5FC</color>
+    <color name="planner_stay">#FFF0DF</color>
+    <color name="planner_accent">#5B21B6</color>
+    <color name="planner_on_accent">#FFFFFF</color>
+    <color name="planner_outline">#8A7F94</color>
+    <color name="planner_scrim">#B3000000</color>
+    <color name="planner_on_photo">#FFFFFF</color>
+    <color name="planner_legacy_system_bar">#2E1251</color>
+    <color name="planner_tile_scrim">#A6000000</color>
+    <color name="planner_info_surface">#F0FFFFFF</color>
+    <color name="planner_top_bar">#99000000</color>
+    <color name="planner_on_photo_muted">#D9FFFFFF</color>
+    <color name="planner_photo_ripple">#33FFFFFF</color>
+</resources>

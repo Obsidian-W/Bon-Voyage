@@ -11,5 +11,9 @@ data class Trip(
     @ColumnInfo (name = "name") var name: String = "",
     @ColumnInfo (name = "dateBegin") var dateBegin: String = Date().toString(),
     @ColumnInfo (name = "dateEnd") var dateEnd: String = Date().toString(),
-    @ColumnInfo (name = "image")  var image: Int = 0
-) {}
+    @ColumnInfo (name = "image")  var image: Int = 0,
+    @ColumnInfo(defaultValue = "''") var countries: String = "",
+    @ColumnInfo(defaultValue = "'UTC'") var timeZone: String = "UTC",
+    @ColumnInfo(defaultValue = "''") var displayZone: String = "",
+    @ColumnInfo(defaultValue = "''") var notes: String = ""
+) : java.io.Serializable {}

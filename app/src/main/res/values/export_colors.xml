@@ -1,0 +1,6 @@
+<resources>
+    <color name="export_ink">#171211</color>
+    <color name="export_paper">#FFFFFF</color>
+    <color name="export_itinerary">#EDC1B8</color>
+    <color name="export_border">#352824</color>
+</resources>

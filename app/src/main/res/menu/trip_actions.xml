@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/shareTripAction" android:title="@string/share_trip" android:icon="@drawable/ic_share" app:iconTint="@color/planner_on_photo" app:showAsAction="always" />
+    <item android:id="@+id/clockAction" android:title="@string/trip_time" android:icon="@drawable/ic_trip_clock" android:checkable="true" app:iconTint="@color/planner_on_photo" app:showAsAction="always" />
+    <item android:id="@+id/editTripAction" android:title="@string/edit_trip" android:icon="@drawable/ic_edit" app:iconTint="@color/planner_on_photo" app:showAsAction="always" />
+</menu>

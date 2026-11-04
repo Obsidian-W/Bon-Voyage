@@ -1,69 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_columnWeight="0.5"
->
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:cardBackgroundColor="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="16dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="@dimen/cardview_default_radius"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:focusable="true">
-
-        <ImageView
-            android:id="@+id/backgroundImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitStart"
-            android:alpha="1"
-            android:src="@drawable/iceland"/>
-
-        <ImageView
-            android:id="@+id/plusImage"
-            android:layout_margin="32dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_add"
-            android:layout_gravity="center"
-            android:alpha="1"
-            />
-
-        <TextView
-            android:id="@+id/countryName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text=""
-            android:alpha="1"
-            android:textSize="24sp"
-            android:shadowColor="@color/black"
-            android:shadowDx="1"
-            android:shadowDy="2"
-            android:shadowRadius="4"
-            android:textColor="@color/white"/>
-
-        <ImageButton
-            android:id="@+id/delete_trip"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="0dp"
-            android:alpha="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_remove"
-            android:contentDescription="@string/button_for_removing_trip"/>
-
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/space_8" android:clipChildren="false" android:clipToPadding="false">
+    <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="match_parent" app:cardBackgroundColor="@color/planner_surface" app:cardCornerRadius="@dimen/card_corner" app:cardElevation="@dimen/card_elevation" android:foreground="?attr/selectableItemBackground" android:clickable="true" android:focusable="true" android:id="@+id/tripTile" android:clipToOutline="true" app:cardPreventCornerOverlap="false">
+        <FrameLayout android:id="@+id/artworkContainer" android:layout_width="match_parent" android:layout_height="match_parent" />
+        <ImageView android:id="@+id/plusImage" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="@dimen/space_32" android:src="@drawable/ic_add" app:tint="@color/planner_accent" android:contentDescription="@string/addTrip" />
+        <LinearLayout android:id="@+id/tripCaption" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom" android:orientation="vertical" android:background="@color/planner_tile_scrim" android:padding="@dimen/space_8">
+            <LinearLayout android:id="@+id/tripNameRow" android:layout_width="match_parent" android:layout_height="@dimen/tile_title_height" android:gravity="center_vertical">
+                <TextView android:id="@+id/tripFlags" style="@style/PlannerTileText" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginEnd="@dimen/space_4" android:gravity="center_vertical" android:maxLines="1" android:importantForAccessibility="no" />
+                <androidx.appcompat.widget.AppCompatTextView android:id="@+id/countryName" style="@style/PlannerTileText" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center_vertical" android:maxLines="1" android:ellipsize="end" android:textStyle="bold" app:autoSizeTextType="uniform" app:autoSizeMinTextSize="@dimen/tile_text_min" app:autoSizeMaxTextSize="@dimen/size_normal" app:autoSizeStepGranularity="@dimen/tile_text_step" />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView android:id="@+id/tileDates" style="@style/PlannerTileText" android:layout_width="match_parent" android:layout_height="@dimen/tile_date_height" android:gravity="center" android:maxLines="1" android:ellipsize="end" app:autoSizeTextType="uniform" app:autoSizeMinTextSize="@dimen/tile_text_min" app:autoSizeMaxTextSize="@dimen/size_caption" app:autoSizeStepGranularity="@dimen/tile_text_step" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

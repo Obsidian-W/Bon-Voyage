@@ -1,0 +1,80 @@
+<resources>
+    <style name="PlannerPhotoToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/planner_top_bar</item>
+        <item name="titleTextColor">@color/planner_on_photo</item>
+        <item name="navigationIconTint">@color/planner_on_photo</item>
+    </style>
+    <style name="ThemeOverlay.BonVoyage.PhotoSearch" parent="ThemeOverlay.AppCompat">
+        <item name="colorControlNormal">@color/planner_on_photo</item>
+        <item name="android:textColorPrimary">@color/planner_on_photo</item>
+        <item name="android:textColorSecondary">@color/planner_on_photo_muted</item>
+        <item name="android:textColorHint">@color/planner_on_photo_muted</item>
+    </style>
+    <style name="PlannerSortButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/field_height</item>
+        <item name="android:paddingStart">@dimen/space_8</item>
+        <item name="android:paddingEnd">@dimen/space_8</item>
+        <item name="android:textSize">@dimen/size_caption</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="iconPadding">@dimen/space_4</item>
+        <item name="iconTint">@color/planner_sort_text</item>
+        <item name="backgroundTint">@color/planner_sort_fill</item>
+        <item name="android:textColor">@color/planner_sort_text</item>
+        <item name="strokeColor">@color/planner_on_photo_muted</item>
+    </style>
+    <style name="PlannerModeChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:minHeight">@dimen/touch_target</item>
+        <item name="android:checkable">true</item>
+        <item name="ensureMinTouchTargetSize">true</item>
+        <item name="chipIconVisible">true</item>
+    </style>
+    <style name="PlannerText">
+        <item name="android:textColor">@color/planner_text</item>
+        <item name="android:textSize">@dimen/size_normal</item>
+    </style>
+    <style name="PlannerCaption" parent="PlannerText">
+        <item name="android:textSize">@dimen/size_caption</item>
+        <item name="android:textColor">@color/planner_hint</item>
+    </style>
+    <style name="PlannerTitle" parent="PlannerText">
+        <item name="android:textSize">@dimen/size_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="PlannerButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">@dimen/touch_target</item>
+        <item name="android:paddingStart">@dimen/space_16</item>
+        <item name="android:paddingEnd">@dimen/space_16</item>
+        <item name="android:paddingTop">@dimen/space_8</item>
+        <item name="android:paddingBottom">@dimen/space_8</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/size_small</item>
+        <item name="android:insetTop">@dimen/space_4</item>
+        <item name="android:insetBottom">@dimen/space_4</item>
+    </style>
+    <style name="PlannerTextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:minHeight">@dimen/touch_target</item>
+        <item name="android:minWidth">@dimen/touch_target</item>
+        <item name="android:paddingStart">@dimen/space_8</item>
+        <item name="android:paddingEnd">@dimen/space_8</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/size_caption</item>
+    </style>
+    <style name="PlannerPhotoTitle" parent="PlannerTitle">
+        <item name="android:textColor">@color/planner_on_photo</item>
+        <item name="android:background">@color/planner_scrim</item>
+        <item name="android:padding">@dimen/space_8</item>
+    </style>
+    <style name="PlannerIcon">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:padding">@dimen/space_16</item>
+        <item name="tint">@color/planner_text</item>
+    </style>
+    <style name="PlannerPhotoEmpty" parent="PlannerTitle">
+        <item name="android:textColor">@color/planner_on_photo</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">@dimen/space_16</item>
+    </style>
+    <style name="PlannerTileText" parent="PlannerCaption">
+        <item name="android:textColor">@color/planner_on_photo</item>
+    </style>
+</resources>

@@ -1,0 +1,2 @@
+<?xml version="1.0" ?>
+<com.google.android.material.checkbox.MaterialCheckBox xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="@dimen/touch_target" android:layout_marginBottom="@dimen/space_16" android:textColor="@color/planner_text" android:textSize="@dimen/size_small"/>

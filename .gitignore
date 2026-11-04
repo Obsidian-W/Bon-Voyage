@@ -19,6 +19,9 @@ out/
 
 # Gradle files
 .gradle/
+.gradle-user/
+.kotlin/
+.android-tests/
 .kotlin/
 .gradle-user/
 .android-sdk/

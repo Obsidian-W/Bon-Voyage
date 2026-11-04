@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="paris.obsidian.bonvoyage">
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BonVoyage">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.trip-exports"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/trip_exports" />
+        </provider>
         <activity android:name=".TripDetailActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan">
+            android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
-        <activity android:name=".TripAddingActivity" />
+        <activity android:name=".TripAddingActivity" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".AppInfoActivity" />
+        <activity android:name=".ImportTripActivity" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

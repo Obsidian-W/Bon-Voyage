@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include layout="@layout/view_screen_artwork" />
+    <LinearLayout android:id="@+id/safeContent" android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.google.android.material.appbar.MaterialToolbar android:id="@+id/infoToolbar" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minHeight="@dimen/field_height" app:navigationIcon="@drawable/ic_close"
+            app:navigationContentDescription="@string/button_for_closing_the_page"
+            style="@style/PlannerPhotoToolbar" />
+        <ScrollView android:id="@+id/aboutCopy" android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:clipToPadding="false" android:paddingStart="@dimen/space_24"
+            android:paddingEnd="@dimen/space_24" android:paddingTop="@dimen/space_16" android:paddingBottom="@dimen/space_32">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/card_corner" app:cardElevation="@dimen/space_4">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="@dimen/about_hero_height">
+                        <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                            android:src="@drawable/main_background" android:scaleType="centerCrop" android:importantForAccessibility="no" />
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                            android:background="@color/planner_scrim" android:orientation="vertical" android:gravity="center"
+                            android:padding="@dimen/space_16">
+                            <ImageView android:layout_width="@dimen/about_icon_size" android:layout_height="@dimen/about_icon_size"
+                                android:src="@mipmap/ic_launcher_round" android:importantForAccessibility="no" />
+                            <TextView style="@style/PlannerTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_8" android:gravity="center" android:text="@string/app_display_name"
+                                android:textColor="@color/planner_on_photo" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_16" app:cardBackgroundColor="@color/planner_info_surface"
+                    app:cardCornerRadius="@dimen/card_corner">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="@dimen/space_24">
+                        <TextView style="@style/PlannerTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:text="@string/about_author" />
+                        <TextView style="@style/PlannerText" android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_8" android:text="@string/about_story" />
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/section_stroke"
+                            android:layout_marginTop="@dimen/space_24" android:background="@color/planner_outline" />
+                        <TextView style="@style/PlannerText" android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_16" android:text="@string/about_privacy" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

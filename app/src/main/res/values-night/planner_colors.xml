@@ -1,0 +1,15 @@
+<resources>
+    <color name="planner_surface">#242027</color>
+    <color name="planner_text">#F2EAF6</color>
+    <color name="planner_hint">#C9BFD1</color>
+    <color name="planner_day">#203B35</color>
+    <color name="planner_transport">#382B48</color>
+    <color name="planner_stay">#473524</color>
+    <color name="planner_accent">#CFACFF</color>
+    <color name="planner_on_accent">#2E1251</color>
+    <color name="planner_outline">#A79AB1</color>
+    <color name="planner_scrim">#B3000000</color>
+    <color name="planner_on_photo">#FFFFFF</color>
+    <color name="planner_tile_scrim">#A6000000</color>
+    <color name="planner_info_surface">#F0242027</color>
+</resources>

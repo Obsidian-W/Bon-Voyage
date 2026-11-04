@@ -1,0 +1,1 @@
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:insetLeft="@dimen/space_8" android:insetTop="@dimen/space_8" android:insetRight="@dimen/space_8" android:insetBottom="@dimen/space_8"><shape android:shape="oval"><solid android:color="@color/planner_surface" /></shape></inset>
