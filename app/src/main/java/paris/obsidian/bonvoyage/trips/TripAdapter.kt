@@ -13,7 +13,10 @@ class TripAdapter(private val onClick: (Trip) -> Unit, private val onLongClick: 
     ListAdapter<Trip, TripAdapter.TripViewHolder>(TripDiffCallback) {
     init { setHasStableIds(true); stateRestorationPolicy = StateRestorationPolicy.PREVENT_WHEN_EMPTY }
     override fun getItemId(position: Int) = getItem(position).id.toLong()
-    class TripViewHolder(view: View) : RecyclerView.ViewHolder(view) { var artworkKey: String? = null }
+    class TripViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var artworkKey: String? = null
+        var boundTrip: Trip? = null
+    }
     override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): TripViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_country, parent, false)
         val columns = (parent as RecyclerView).layoutManager.let { (it as GridLayoutManager).spanCount }
@@ -23,21 +26,24 @@ class TripAdapter(private val onClick: (Trip) -> Unit, private val onLongClick: 
     }
     override fun onBindViewHolder(holder: TripViewHolder, position: Int) {
         val trip = getItem(position)
+        holder.boundTrip = trip
         val view = holder.itemView
         val add = trip.id == 0
         view.findViewById<View>(R.id.plusImage).visibility = if (add) View.VISIBLE else View.GONE
         val caption = view.findViewById<View>(R.id.tripCaption)
+        val flags = view.findViewById<TextView>(R.id.tripFlags)
+        flags.text = ""
+        flags.visibility = View.GONE
         caption.visibility = if (add) View.GONE else View.VISIBLE
         if (!add) {
             view.findViewById<TextView>(R.id.countryName).text = trip.name
             val dates = view.context.getString(R.string.tile_date_range, tileDate(trip.dateBegin), tileDate(trip.dateEnd))
             view.findViewById<TextView>(R.id.tileDates).text = dates
-            val flags = view.findViewById<TextView>(R.id.tripFlags)
             val row = view.findViewById<View>(R.id.tripNameRow)
             val candidates = CountryArtwork.names(trip.countries.ifBlank { trip.name }).mapNotNull(CountryArtwork::flag)
                 .take(view.resources.getInteger(R.integer.tile_max_flags))
             row.doOnLayout {
-                if (holder.bindingAdapterPosition == RecyclerView.NO_POSITION || getItem(holder.bindingAdapterPosition).id != trip.id) return@doOnLayout
+                if (holder.boundTrip !== trip) return@doOnLayout
                 val available = row.width / 2
                 val visibleFlags = candidates.indices.reversed().map { candidates.take(it + 1).joinToString(" ") }
                     .firstOrNull { flags.paint.measureText(it) <= available }.orEmpty()

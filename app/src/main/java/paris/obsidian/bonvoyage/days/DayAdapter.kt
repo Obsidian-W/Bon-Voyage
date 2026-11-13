@@ -76,6 +76,10 @@ class DayAdapter(var trip: Trip, private val save: (Day) -> Unit, private val re
             if (!name.hasFocus() && name.text.toString() != day.title) name.setText(day.title)
             flag.text = CountryArtwork.flag(day.country).orEmpty()
             flag.contentDescription = day.country
+            val canChangeCountry = CountryArtwork.names(trip.countries).size > 1
+            flag.isClickable = canChangeCountry
+            flag.isFocusable = canChangeCountry
+            flag.isEnabled = canChangeCountry
             itemView.findViewById<View>(R.id.dayHeader).setBackgroundColor(ContextCompat.getColor(itemView.context, if (kind == 2) R.color.planner_transport else R.color.planner_day))
             itemView.findViewById<TextView>(R.id.dayNumber).apply {
                 text = if (kind == 2 && day.departure.isNotBlank() && day.arrival.isNotBlank())

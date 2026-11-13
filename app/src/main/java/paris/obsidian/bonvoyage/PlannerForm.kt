@@ -3,6 +3,7 @@ package paris.obsidian.bonvoyage
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.*
 import java.time.*
@@ -111,6 +112,19 @@ class PlannerForm(val parent: LinearLayout, private val restored: Bundle? = null
         input.setEndIconOnClickListener { edit.text?.clear() }
         input.isEndIconVisible = !edit.text.isNullOrEmpty()
         edit.addTextChangedListener { input.isEndIconVisible = !it.isNullOrEmpty() }
+    }
+
+    fun next(from: String, to: String) {
+        val field = fields.getValue(from)
+        val target = fields.getValue(to)
+        field.imeOptions = EditorInfo.IME_ACTION_NEXT
+        field.nextFocusForwardId = target.id
+        field.setOnEditorActionListener { _, action, event ->
+            val enter = event?.keyCode == KeyEvent.KEYCODE_ENTER
+            if (action != EditorInfo.IME_ACTION_NEXT && !enter) return@setOnEditorActionListener false
+            if (!enter || event?.action == KeyEvent.ACTION_UP) target.requestFocus()
+            true
+        }
     }
 
     fun fillIfBlank(key: String, value: String) {

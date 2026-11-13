@@ -42,12 +42,13 @@ class TravelTimeTest {
         assertFalse(DayDiffCallback.areContentsTheSame(before, after))
         assertFalse(DayDiffCallback.areItemsTheSame(before, Day(id = 13)))
     }
-    @Test fun hotelSearchAndMapCoordinatesAreEncoded() {
-        assertTrue(PlannerUi.booking("Hôtel & Spa").endsWith("H%C3%B4tel+%26+Spa"))
+    @Test fun hotelLinksAndMapCoordinates() {
+        assertEquals("https://hotel.example/rooms", PlannerUi.booking("hotel.example/rooms"))
+        assertEquals("https://www.expedia.com/Hotel", PlannerUi.booking("https://www.expedia.com/Hotel"))
         assertTrue(PlannerUi.map("48.8566, 2.3522").endsWith("48.8566%2C+2.3522"))
     }
-    @Test fun bookingSpoofIsRejected() {
-        assertTrue(runCatching { PlannerUi.booking("https://booking.com.example/hotel") }.isFailure)
+    @Test fun bookingRejectsNonWebLinksAndEmbeddedCredentials() {
+        assertTrue(runCatching { PlannerUi.booking("intent://booking.com/hotel") }.isFailure)
         assertTrue(runCatching { PlannerUi.booking("https://evil@booking.com/hotel") }.isFailure)
     }
 }

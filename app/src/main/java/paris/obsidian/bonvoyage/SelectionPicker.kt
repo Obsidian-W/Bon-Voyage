@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.*
 import androidx.core.widget.addTextChangedListener
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.core.view.isVisible
 
 /** Search, selection, sizing, and spacing shared by country and time-zone pickers. */
 object SelectionPicker {
@@ -12,9 +12,14 @@ object SelectionPicker {
              multiple: Boolean, result: (List<String>) -> Unit) {
         val content = LayoutInflater.from(context).inflate(R.layout.view_selection_picker, null)
         val search = content.findViewById<EditText>(R.id.selectionSearch).apply { setHint(searchHint) }
+        search.isVisible = options.size >= context.resources.getInteger(R.integer.picker_search_threshold)
         val list = content.findViewById<ListView>(R.id.selectionList)
-        list.layoutParams.height = (context.resources.displayMetrics.heightPixels / 3)
-            .coerceAtMost(context.resources.getDimensionPixelSize(R.dimen.picker_height))
+        if (search.isVisible) {
+            list.layoutParams.height = (context.resources.displayMetrics.heightPixels / 3)
+                .coerceAtMost(context.resources.getDimensionPixelSize(R.dimen.picker_height))
+        } else {
+            list.layoutParams.height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        }
         list.choiceMode = if (multiple) ListView.CHOICE_MODE_MULTIPLE else ListView.CHOICE_MODE_SINGLE
         val draft = selected.toMutableSet()
         var visible = options
@@ -24,13 +29,22 @@ object SelectionPicker {
             visible.forEachIndexed { index, name -> list.setItemChecked(index, name in draft) }
         }
         refresh(); search.addTextChangedListener { refresh() }
-        val builder = MaterialAlertDialogBuilder(context).setTitle(title).setView(content).setNegativeButton(android.R.string.cancel, null)
-        if (multiple) builder.setPositiveButton(android.R.string.ok) { _, _ -> result(options.filter { it in draft }) }
+        val builder = PlannerUi.formDialog(context).setTitle(title).setView(content).setNegativeButton(android.R.string.cancel, null)
+        if (multiple) {
+            builder.setPositiveButton(android.R.string.ok) { _, _ -> result(options.filter { it in draft }) }
+            builder.setNeutralButton(R.string.clear_countries, null)
+        }
         val dialog = builder.create()
         list.setOnItemClickListener { _, _, position, _ ->
             if (multiple) { if (!draft.add(visible[position])) draft.remove(visible[position]) }
             else { result(listOf(visible[position])); dialog.dismiss() }
         }
         PlannerUi.showDialog(context, dialog)
+        if (multiple) {
+            dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL).setOnClickListener {
+                draft.clear()
+                refresh()
+            }
+        }
     }
 }

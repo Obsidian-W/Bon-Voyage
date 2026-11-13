@@ -1,0 +1,5 @@
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/bon_voyage_icon_base" />
+    <foreground android:drawable="@drawable/bon_voyage_mark" />
+    <monochrome android:drawable="@drawable/bon_voyage_plane" />
+</adaptive-icon>

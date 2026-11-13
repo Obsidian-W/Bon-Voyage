@@ -72,7 +72,9 @@ class TripAddingActivity : AppCompatActivity(), KeyboardAware {
         }
         lifecycleScope.launch { repeatOnLifecycle(Lifecycle.State.STARTED) {
             launch { model.savedTrip.collect { saved -> if (saved != null) {
-                setResult(RESULT_OK)
+                val savedTrip = withContext(Dispatchers.IO) { model.db.tripDao().findByID(saved) }
+                setResult(RESULT_OK, Intent().putExtra(ImportTripActivity.SHOW_PAST,
+                    TravelTime.past(savedTrip.dateEnd, savedTrip.timeZone)))
                 if (intent.getIntExtra("id", 0) == 0) startActivity(Intent(this@TripAddingActivity, TripDetailActivity::class.java).putExtra("id", saved))
                 finish()
             } } }

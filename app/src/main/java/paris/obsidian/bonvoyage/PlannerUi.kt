@@ -42,7 +42,16 @@ object PlannerUi {
         val release = (owner as? Activity)?.let(::freezeDialogBackground)
         dialog.setOnDismissListener { release?.invoke() }
         dialog.window?.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        try { dialog.show() } catch (error: Exception) { release?.invoke(); throw error }
+        try {
+            dialog.show()
+        } catch (error: Exception) {
+            release?.invoke()
+            throw error
+        }
+    }
+    fun formDialog(context: Context): MaterialAlertDialogBuilder {
+        val inset = context.resources.getDimensionPixelSize(R.dimen.space_16)
+        return MaterialAlertDialogBuilder(context).setBackgroundInsetTop(inset).setBackgroundInsetBottom(inset)
     }
     fun insets(activity: Activity) {
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
@@ -137,11 +146,10 @@ object PlannerUi {
     fun booking(value: String): String {
         val text = value.trim()
         require(text.isNotEmpty())
-        if (!text.contains("://") && !text.startsWith("www.") && !text.startsWith("booking.com"))
-            return "https://www.booking.com/searchresults.html?ss=${encoded(text)}"
         val uri = URI(if (text.contains("://")) text else "https://$text")
-        val host = uri.host?.lowercase().orEmpty()
-        require(uri.scheme == "https" && uri.userInfo == null && (host == "booking.com" || host.endsWith(".booking.com")))
+        val host = uri.host.orEmpty()
+        require((uri.scheme.equals("https", true) || uri.scheme.equals("http", true)) &&
+            uri.userInfo == null && '.' in host)
         return uri.toASCIIString()
     }
     fun map(value: String): String {

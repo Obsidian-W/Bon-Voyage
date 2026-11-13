@@ -1,6 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <include layout="@layout/view_screen_artwork" />
+    <paris.obsidian.bonvoyage.FishBackgroundView android:id="@+id/fishBackground" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:importantForAccessibility="no" android:visibility="gone" />
     <LinearLayout android:id="@+id/safeContent" android:layout_width="match_parent" android:layout_height="match_parent"
         android:orientation="vertical">
         <com.google.android.material.appbar.MaterialToolbar android:id="@+id/infoToolbar" android:layout_width="match_parent"
@@ -20,7 +22,7 @@
                             android:background="@color/planner_scrim" android:orientation="vertical" android:gravity="center"
                             android:padding="@dimen/space_16">
                             <ImageView android:layout_width="@dimen/about_icon_size" android:layout_height="@dimen/about_icon_size"
-                                android:src="@mipmap/ic_launcher_round" android:importantForAccessibility="no" />
+                                android:src="@mipmap/bon_voyage_launcher_round" android:importantForAccessibility="no" />
                             <TextView style="@style/PlannerTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/space_8" android:gravity="center" android:text="@string/app_display_name"
                                 android:textColor="@color/planner_on_photo" />
@@ -40,9 +42,18 @@
                             android:layout_marginTop="@dimen/space_24" android:background="@color/planner_outline" />
                         <TextView style="@style/PlannerText" android:layout_width="match_parent" android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/space_16" android:text="@string/about_privacy" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/privacyPolicy"
+                            style="@style/PlannerTextButton" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_8" android:text="@string/privacy_policy" app:icon="@drawable/ic_link" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
         </ScrollView>
+        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/turboMode" style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="@dimen/field_height"
+            android:layout_margin="@dimen/space_16" android:padding="@dimen/space_16"
+            android:background="@color/planner_info_surface" android:text="@string/turbo_mode"
+            android:textColor="@color/planner_text" android:textSize="@dimen/size_normal"
+            android:clickable="true" android:focusable="true" app:showText="false" android:visibility="gone" />
     </LinearLayout>
 </FrameLayout>

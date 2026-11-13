@@ -99,15 +99,16 @@ internal object TripWorkbookImport {
                 val place = rows.map { it.place }.filter(String::isNotBlank).distinct().joinToString("\n")
                 val stay = rows.map { it.stay }.filter(String::isNotBlank).distinct().joinToString("\n")
                 val details = stay.lines().map(String::trim).filter(String::isNotBlank)
-                val bookingLine = details.drop(1).firstOrNull(::isBookingLink)
+                val bookingLine = details.lastOrNull(::isBookingLink)
+                val hotelDetails = details.filterNot { it == bookingLine }
                 val booking = bookingLine?.let(PlannerUi::booking).orEmpty()
                 val activities = rows.map { it.activity }.filter(String::isNotBlank)
                 val extra = rows.map { it.extra }.filter(String::isNotBlank).joinToString("\n")
                 val notes = if (extra.isBlank()) activities else activities + context.getString(R.string.import_extra_notes, extra)
                 add(Day(type = "day", dayNumber = index + 1, date = storedDate, country = country,
                     title = place.ifBlank { context.getString(R.string.day_default_name, index + 1) },
-                    content = notes.joinToString("\n\n"), hotel = details.firstOrNull().orEmpty(),
-                    location = details.drop(1).filterNot { it == bookingLine }.joinToString("\n"), bookingUrl = booking))
+                    content = notes.joinToString("\n\n"), hotel = hotelDetails.firstOrNull().orEmpty(),
+                    location = hotelDetails.drop(1).joinToString("\n"), bookingUrl = booking))
                 rows.map { it.transport }.filter(String::isNotBlank).forEach { transport ->
                     add(Day(type = "other", title = transport, dayNumber = index + 1, date = storedDate, country = country,
                         destinationCountry = country, departureZone = zone, arrivalZone = zone))
@@ -119,9 +120,11 @@ internal object TripWorkbookImport {
         return Itinerary(trip, cards)
     }
 
-    private fun isBookingLink(value: String): Boolean =
-        (value.startsWith("https://") || value.startsWith("www.") || value.startsWith("booking.com")) &&
-            runCatching { PlannerUi.booking(value) }.isSuccess
+    private fun isBookingLink(value: String): Boolean {
+        if (!value.startsWith("https://", true) && !value.startsWith("http://", true) &&
+            !value.startsWith("www.", true) && '/' !in value) return false
+        return runCatching { PlannerUi.booking(value) }.isSuccess
+    }
 
     private fun parseDate(cell: Cell, use1904: Boolean): CellDate {
         val text = cell.text.trim()

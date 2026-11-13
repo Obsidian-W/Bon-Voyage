@@ -21,8 +21,9 @@ class CardActionsView @JvmOverloads constructor(context: Context, attrs: Attribu
             }
         }
         findViewById<Button>(R.id.bookingAction).apply {
-            visibility = if (day.hotel.isBlank() && day.bookingUrl.isBlank()) GONE else VISIBLE
-            setOnClickListener { PlannerUi.open(context) { PlannerUi.booking(day.bookingUrl.ifBlank { day.hotel }) } }
+            val booking = runCatching { PlannerUi.booking(day.bookingUrl) }.getOrNull()
+            visibility = if (booking == null) GONE else VISIBLE
+            setOnClickListener(if (booking == null) null else OnClickListener { PlannerUi.open(context) { booking } })
         }
     }
 }

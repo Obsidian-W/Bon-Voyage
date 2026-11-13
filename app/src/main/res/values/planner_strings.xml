@@ -10,7 +10,7 @@
     <string name="invalid_name">Select a country.</string>
     <string name="details_action">Details</string>
     <string name="map_action">Map</string>
-    <string name="booking_action">Booking.com</string>
+    <string name="booking_action">Booking link</string>
     <string name="accommodation">Accommodation</string>
     <string name="add_stay">Add accommodation</string>
     <string name="trip_name">Name</string>
@@ -27,7 +27,7 @@
     <string name="end_label">End</string>
     <string name="location_label">Address or map link</string>
     <string name="hotel_label">Hotel name</string>
-    <string name="booking_label">Booking.com link</string>
+    <string name="booking_label">Booking link</string>
     <string name="departure_label">Departure</string>
     <string name="arrival_label">Arrival</string>
     <string name="departure_zone">Departure time zone</string>
@@ -124,4 +124,8 @@
     <string name="import_date_failed">Check the dates and the first year.</string>
     <string name="import_extra_notes">Extra: %1$s</string>
     <string name="sort_date_short">Date</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="clear_countries">Clear all</string>
+    <string name="turbo_mode">Turbo mode</string>
+    <string name="privacy_policy_url" translatable="false">https://obsidiantravels.net/apps/bonvoyage</string>
 </resources>

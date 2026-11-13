@@ -4,9 +4,11 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import paris.obsidian.bonvoyage.days.Day
 import paris.obsidian.bonvoyage.trips.Trip
 
@@ -32,6 +34,8 @@ class AddCardDialog : PlannerDialogFragment() {
         val zone = CountryZones.choose(listOf(country), trip.timeZone)
         val transport = TransportForm(form,
             Day(type = selectedType, date = trip.dateEnd, country = country, departureZone = zone, arrivalZone = zone), trip)
+        form.next("name", "location")
+        form.next("location", "destination")
         val ids = listOf(R.id.modeTrain, R.id.modeBoat, R.id.modeBus, R.id.modeFlight, R.id.modeCar, R.id.modeOther)
         modes.check(ids[TransportMode.types.indexOf(selectedType)])
         modes.setOnCheckedStateChangeListener { _, checked ->
@@ -45,7 +49,11 @@ class AddCardDialog : PlannerDialogFragment() {
             addView(modes)
             addView(ScrollView(requireContext()).apply { addView(content) })
         }
-        val dialog = MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.add_transport_dialog)
+        ViewCompat.setOnApplyWindowInsetsListener(body) { _, insets ->
+            modes.isVisible = !insets.isVisible(WindowInsetsCompat.Type.ime())
+            insets
+        }
+        val dialog = PlannerUi.formDialog(requireContext()).setTitle(R.string.add_transport_dialog)
             .setView(body).setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.add_card, null).create()
         dialog.setOnShowListener { dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {

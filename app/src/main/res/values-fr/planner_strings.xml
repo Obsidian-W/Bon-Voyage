@@ -10,7 +10,7 @@
     <string name="invalid_name">Sélectionnez un pays.</string>
     <string name="details_action">Détails</string>
     <string name="map_action">Carte</string>
-    <string name="booking_action">Booking.com</string>
+    <string name="booking_action">Lien de réservation</string>
     <string name="accommodation">Hébergement</string>
     <string name="add_stay">Ajouter un hébergement</string>
     <string name="trip_name">Nom</string>
@@ -27,7 +27,7 @@
     <string name="end_label">Fin</string>
     <string name="location_label">Adresse ou lien de carte</string>
     <string name="hotel_label">Nom de l’hôtel</string>
-    <string name="booking_label">Lien Booking.com</string>
+    <string name="booking_label">Lien de réservation</string>
     <string name="departure_label">Départ</string>
     <string name="arrival_label">Arrivée</string>
     <string name="departure_zone">Fuseau de départ</string>
@@ -124,4 +124,7 @@
     <string name="import_date_failed">Vérifiez les dates et l’année de départ.</string>
     <string name="import_extra_notes">Compléments : %1$s</string>
     <string name="sort_date_short">Date</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="clear_countries">Tout effacer</string>
+    <string name="turbo_mode">Mode turbo</string>
 </resources>

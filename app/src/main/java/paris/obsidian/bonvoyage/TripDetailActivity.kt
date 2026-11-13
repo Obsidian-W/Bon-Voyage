@@ -85,6 +85,7 @@ class TripDetailActivity : AppCompatActivity(), KeyboardAware {
                     .collect { (loaded, days, added) ->
                         if (loaded == null) { finish(); return@collect }
                         val zoneChanged = trip.timeZone != loaded.timeZone || trip.displayZone != loaded.displayZone
+                        val countriesChanged = trip.countries != loaded.countries
                         trip = loaded.copy(); adapter.trip = trip
                         findViewById<MaterialToolbar>(R.id.tripToolbar).title = trip.name
                         findViewById<TextView>(R.id.tripDates).text = getString(R.string.trip_dates, TravelTime.label(trip.dateBegin), TravelTime.label(trip.dateEnd))
@@ -141,7 +142,7 @@ class TripDetailActivity : AppCompatActivity(), KeyboardAware {
                                 val position = cards.indexOfFirst { it.id == added }
                                 if (position >= 0) { recycler.smoothScrollToPosition(position); revealedID = added }
                             }
-                            if (zoneChanged) adapter.notifyItemRangeChanged(0, adapter.itemCount, "zone")
+                            if (zoneChanged || countriesChanged) adapter.notifyItemRangeChanged(0, adapter.itemCount, "trip")
                         }
                     }
             }

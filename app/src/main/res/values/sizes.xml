@@ -31,4 +31,6 @@
     <dimen name="about_hero_height">192dp</dimen>
     <dimen name="about_icon_size">64dp</dimen>
     <item type="integer" name="trip_controls_threshold">3</item>
+    <integer name="picker_search_threshold">5</integer>
+    <dimen name="fish_pattern_step">96dp</dimen>
 </resources>

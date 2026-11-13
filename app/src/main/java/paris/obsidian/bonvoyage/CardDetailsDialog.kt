@@ -7,7 +7,6 @@ import android.widget.ScrollView
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import paris.obsidian.bonvoyage.days.Day
 import paris.obsidian.bonvoyage.trips.Trip
 
@@ -38,7 +37,7 @@ class CardDetailsDialog : PlannerDialogFragment() {
             transport = TransportForm(form, day, trip)
         }
         val title = if (full) R.string.edit_details else if (hotel) R.string.edit_hotel else R.string.edit_transport
-        val dialog = MaterialAlertDialogBuilder(requireContext()).setTitle(title)
+        val dialog = PlannerUi.formDialog(requireContext()).setTitle(title)
             .setView(ScrollView(requireContext()).apply { addView(content) })
             .setNegativeButton(android.R.string.cancel, null).setPositiveButton(R.string.save_action, null).create()
         dialog.setOnShowListener { dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {
@@ -50,8 +49,9 @@ class CardDetailsDialog : PlannerDialogFragment() {
             }
             if (hotel) {
                 try {
-                    form.value("booking").takeIf { it.isNotBlank() }?.let { PlannerUi.booking(it) }
-                    save(day.copy(hotel = form.value("hotel"), location = form.value("location"), bookingUrl = form.value("booking")))
+                    val entered = form.value("booking")
+                    val booking = if (entered.isBlank() || entered == day.bookingUrl) entered else PlannerUi.booking(entered)
+                    save(day.copy(hotel = form.value("hotel"), location = form.value("location"), bookingUrl = booking))
                 } catch (_: Exception) { PlannerUi.error(requireContext(), R.string.invalid_details) }
             } else {
                 transport!!.save(::save)

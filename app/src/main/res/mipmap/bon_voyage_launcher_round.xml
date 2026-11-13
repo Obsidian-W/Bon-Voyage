@@ -1,0 +1,6 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="@color/bon_voyage_icon_base" android:pathData="M54,0A54,54 0,1 1,54,108A54,54 0,1 1,54,0" />
+    <path android:strokeColor="@color/bon_voyage_icon_orbit" android:strokeWidth="2" android:strokeLineCap="round" android:pathData="M76,50A22,22 0,1 1,57,32" />
+    <path android:fillColor="@color/bon_voyage_icon_plane" android:pathData="M75,31Q77,30 76,33L63,72Q62,75 60,72L53,58L46,65L46,55L39,51Q36,49 40,47Z" />
+    <path android:strokeColor="@color/bon_voyage_icon_fold" android:strokeWidth="2" android:strokeLineCap="round" android:pathData="M46,55L69,38L53,58" />
+</vector>

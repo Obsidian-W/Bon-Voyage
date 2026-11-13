@@ -17,6 +17,11 @@ object CountryArtwork {
         val key = when (name) {
             "Bosnia & Herzegovina" -> "bosnia"
             "Antigua & Barbuda" -> "antigua___barbuda"
+            "The Gambia" -> "gambia"
+            "Saint Kitts & Nevis" -> "saint_kitts_and_nevis"
+            "St Vincent & Grenadines" -> "saint_vincent_and_the_grenadines"
+            "Sao Tome & Principe" -> "sao_tome_and_principe"
+            "Trinidad & Tobago" -> "trinidad_and_tobago"
             else -> name.lowercase(Locale.ROOT).replace(Regex("[^a-z0-9]"), "_")
         }
         return context.resources.getIdentifier(key, "drawable", context.packageName)
@@ -41,7 +46,7 @@ object CountryArtwork {
             val image = ImageView(container.context).apply { scaleType = ImageView.ScaleType.CENTER_CROP; contentDescription = name }
             grid.addView(image, GridLayout.LayoutParams(GridLayout.spec(index / columns, 1f), GridLayout.spec(index % columns, 1f)).apply { width = 0; height = 0 })
             val resource = resource(container.context, name)
-            val source: Any = if (resource != 0) resource else flagCode(name)?.let { "https://flagcdn.com/w640/$it.png" } ?: R.drawable.main_background
+            val source = if (resource != 0) resource else R.drawable.main_background
             Glide.with(image).load(source).placeholder(R.drawable.main_background).error(R.drawable.main_background).into(image)
         }
     }

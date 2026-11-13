@@ -98,6 +98,15 @@ class PlannerVisualTest {
                     eventually { onView(withId(R.id.tab_layout)).check(matches(withEffectiveVisibility(Visibility.GONE))) }
                     eventually { onView(withText(trip.name)).check(matches(isDisplayed())) }
                     capture("${name}_empty_history")
+                    val replacement = past.copy(id = 0, name = "Japan history", countries = "Japan")
+                    replacement.id = db.tripDao().insertOne(replacement).toInt()
+                    eventually { onView(withId(R.id.tab_layout)).check(matches(isDisplayed())) }
+                    onView(withText(R.string.previous)).perform(click())
+                    eventually {
+                        onView(allOf(withId(R.id.tripFlags), isDescendantOfA(allOf(withId(R.id.tripTile),
+                            hasDescendant(withText(replacement.name)))))).check(matches(withText("🇯🇵")))
+                    }
+                    db.tripDao().removeOne(replacement)
                     past.id = db.tripDao().insertOne(past.copy(id = 0)).toInt()
                 }
                 ActivityScenario.launch<TripDetailActivity>(Intent(context, TripDetailActivity::class.java).putExtra("id", trip.id)).use { scenario ->
@@ -136,7 +145,6 @@ class PlannerVisualTest {
                         assertEquals(backgroundBeforeDialog, backgroundWithDialogKeyboard)
                     }
                     capture("${name}_dialog_keyboard")
-                    Espresso.closeSoftKeyboard()
                     onView(withId(android.R.id.button1)).perform(click())
                     eventually { assertEquals(day.hotel, db.dayDao().findByLongID(day.id)!!.hotel) }
                     scenario.recreate()
@@ -185,9 +193,9 @@ class PlannerVisualTest {
                         it.findViewById<View>(R.id.tripFormScroll).getGlobalVisibleRect(backgroundWithSearchKeyboard)
                         assertEquals(backgroundBeforeSearch, backgroundWithSearchKeyboard)
                     }
-                    Espresso.closeSoftKeyboard()
-                    onView(withText(android.R.string.cancel)).perform(click())
-                    onView(withId(R.id.field_start)).perform(scrollTo(), click()); capture("${name}_date_picker")
+                    onView(withId(android.R.id.button2)).perform(click())
+                    eventually { onView(withId(R.id.field_start)).perform(scrollTo(), click()) }
+                    capture("${name}_date_picker")
                 }
             }
         } finally {
@@ -215,6 +223,14 @@ class PlannerVisualTest {
                 onView(allOf(withText("Albania"), isAssignableFrom(android.widget.CheckedTextView::class.java))).perform(click())
                 onView(withId(android.R.id.button1)).perform(click())
                 onView(withId(R.id.field_name)).check(matches(withText("Albania")))
+                onView(withId(R.id.field_countries)).perform(click())
+                onView(withText(R.string.clear_countries)).perform(click())
+                onView(withId(android.R.id.button1)).perform(click())
+                onView(withId(R.id.field_countries)).check(matches(withText("")))
+                onView(withId(R.id.field_countries)).perform(click())
+                onView(withId(R.id.selectionSearch)).perform(replaceText("Albania"))
+                onView(allOf(withText("Albania"), isAssignableFrom(android.widget.CheckedTextView::class.java))).perform(click())
+                onView(withId(android.R.id.button1)).perform(click())
                 onView(withId(R.id.field_name)).perform(scrollTo(), replaceText(tripName)); Espresso.closeSoftKeyboard()
                 onView(withId(R.id.validateButton)).perform(click())
                 eventually { onView(withId(R.id.clockAction)).check(matches(isDisplayed())) }
@@ -282,7 +298,16 @@ class PlannerVisualTest {
             Espresso.openActionBarOverflowOrOptionsMenu(context)
             onView(withText(R.string.about_title)).perform(click())
             onView(withText(R.string.about_author)).check(matches(isDisplayed()))
+            onView(withId(R.id.privacyPolicy)).check(matches(withText(R.string.privacy_policy)))
             capture("about_updated")
+            Espresso.pressBack()
+            Espresso.openActionBarOverflowOrOptionsMenu(context)
+            onView(withText(R.string.settings_title)).perform(click())
+            onView(withId(R.id.turboMode)).check(matches(isDisplayed()))
+            onView(withId(R.id.turboMode)).perform(click())
+            onView(withId(R.id.fishBackground)).check(matches(isDisplayed()))
+            capture("turbo_settings")
+            onView(withId(R.id.turboMode)).perform(click())
             Espresso.pressBack()
             onView(allOf(withId(R.id.tripTile), withContentDescription(context.getString(R.string.addTrip)))).perform(longClick())
             eventually {
@@ -451,6 +476,13 @@ class PlannerVisualTest {
                     onView(allOf(withId(R.id.plusTrip), isDisplayed())).perform(click())
                     onView(withText(TransportMode.label(type))).perform(click())
                     eventually { onView(withId(R.id.field_name)).check(matches(withText(""))) }
+                    if (index == 0) {
+                        onView(withId(R.id.field_name)).perform(scrollTo(), click())
+                        capture("transport_name_keyboard")
+                        onView(withId(R.id.field_name)).perform(pressImeActionButton())
+                        onView(withId(R.id.field_location)).check(matches(hasFocus()))
+                        assertTrue(db.dayDao().getAll(trip.id).isEmpty())
+                    }
                     onView(withId(R.id.field_departureZone)).check(androidx.test.espresso.assertion.ViewAssertions.doesNotExist())
                     onView(withId(R.id.field_arrivalZone)).check(androidx.test.espresso.assertion.ViewAssertions.doesNotExist())
                     // Mode and route live in this same dialog, not a second popup.

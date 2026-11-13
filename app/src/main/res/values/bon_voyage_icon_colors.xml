@@ -1,0 +1,6 @@
+<resources>
+    <color name="bon_voyage_icon_base">#092D43</color>
+    <color name="bon_voyage_icon_orbit">#53CBC9</color>
+    <color name="bon_voyage_icon_plane">#F4FFFA</color>
+    <color name="bon_voyage_icon_fold">#71C5C9</color>
+</resources>
